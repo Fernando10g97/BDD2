@@ -1,0 +1,374 @@
+-- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: Spotify
+-- ------------------------------------------------------
+-- Server version	10.4.13-MariaDB-1:10.4.13+maria~bionic
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Albumes`
+--
+
+DROP TABLE IF EXISTS `Albumes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Albumes` (
+  `IdAlbumes` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `FechaLanzamiento` date NOT NULL,
+  PRIMARY KEY (`IdAlbumes`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Albumes`
+--
+
+LOCK TABLES `Albumes` WRITE;
+/*!40000 ALTER TABLE `Albumes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Albumes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Artista`
+--
+
+DROP TABLE IF EXISTS `Artista`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Artista` (
+  `IdArtista` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `CorreoElectronico` varchar(50) NOT NULL,
+  `FechaInicio` date NOT NULL,
+  PRIMARY KEY (`IdArtista`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Artista`
+--
+
+LOCK TABLES `Artista` WRITE;
+/*!40000 ALTER TABLE `Artista` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Artista` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Canciones`
+--
+
+DROP TABLE IF EXISTS `Canciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Canciones` (
+  `IdCanciones` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `FechaLanzamiento` date NOT NULL,
+  `IdAlbumes` int(11) NOT NULL,
+  `IdArtista` int(11) NOT NULL,
+  `IdGenero` int(11) NOT NULL,
+  PRIMARY KEY (`IdCanciones`),
+  KEY `IdAlbumes` (`IdAlbumes`),
+  KEY `IdArtista` (`IdArtista`),
+  KEY `IdGenero` (`IdGenero`),
+  CONSTRAINT `Canciones_ibfk_1` FOREIGN KEY (`IdAlbumes`) REFERENCES `Albumes` (`IdAlbumes`),
+  CONSTRAINT `Canciones_ibfk_2` FOREIGN KEY (`IdArtista`) REFERENCES `Artista` (`IdArtista`),
+  CONSTRAINT `Canciones_ibfk_3` FOREIGN KEY (`IdGenero`) REFERENCES `Genero` (`IdGenero`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Canciones`
+--
+
+LOCK TABLES `Canciones` WRITE;
+/*!40000 ALTER TABLE `Canciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Canciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CancionesFavoritas`
+--
+
+DROP TABLE IF EXISTS `CancionesFavoritas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CancionesFavoritas` (
+  `IdCanciones` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  KEY `IdCanciones` (`IdCanciones`),
+  CONSTRAINT `CancionesFavoritas_ibfk_1` FOREIGN KEY (`IdCanciones`) REFERENCES `Canciones` (`IdCanciones`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CancionesFavoritas`
+--
+
+LOCK TABLES `CancionesFavoritas` WRITE;
+/*!40000 ALTER TABLE `CancionesFavoritas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CancionesFavoritas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CancionesSugeridas`
+--
+
+DROP TABLE IF EXISTS `CancionesSugeridas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CancionesSugeridas` (
+  `IdCanciones` int(11) NOT NULL,
+  `IdPlaylist` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  KEY `IdCanciones` (`IdCanciones`),
+  KEY `IdPlaylist` (`IdPlaylist`),
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `CancionesSugeridas_ibfk_1` FOREIGN KEY (`IdCanciones`) REFERENCES `Canciones` (`IdCanciones`),
+  CONSTRAINT `CancionesSugeridas_ibfk_2` FOREIGN KEY (`IdPlaylist`) REFERENCES `Playlist` (`IdPlaylist`),
+  CONSTRAINT `CancionesSugeridas_ibfk_3` FOREIGN KEY (`IdUsuario`) REFERENCES `Usuario` (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CancionesSugeridas`
+--
+
+LOCK TABLES `CancionesSugeridas` WRITE;
+/*!40000 ALTER TABLE `CancionesSugeridas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CancionesSugeridas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Clave`
+--
+
+DROP TABLE IF EXISTS `Clave`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Clave` (
+  `IdClave` int(11) NOT NULL,
+  `ClaveEncriptada` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`IdClave`),
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `Clave_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `Usuario` (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Clave`
+--
+
+LOCK TABLES `Clave` WRITE;
+/*!40000 ALTER TABLE `Clave` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Clave` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Escuchado`
+--
+
+DROP TABLE IF EXISTS `Escuchado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Escuchado` (
+  `IdEscuchado` int(11) NOT NULL,
+  `IdAlbumes` int(11) NOT NULL,
+  PRIMARY KEY (`IdEscuchado`),
+  KEY `IdAlbumes` (`IdAlbumes`),
+  CONSTRAINT `Escuchado_ibfk_1` FOREIGN KEY (`IdAlbumes`) REFERENCES `Albumes` (`IdAlbumes`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Escuchado`
+--
+
+LOCK TABLES `Escuchado` WRITE;
+/*!40000 ALTER TABLE `Escuchado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Escuchado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Genero`
+--
+
+DROP TABLE IF EXISTS `Genero`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Genero` (
+  `IdGenero` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdGenero`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Genero`
+--
+
+LOCK TABLES `Genero` WRITE;
+/*!40000 ALTER TABLE `Genero` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Genero` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Playlist`
+--
+
+DROP TABLE IF EXISTS `Playlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Playlist` (
+  `IdPlaylist` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `FechaCreacion` date NOT NULL,
+  `IdCanciones` int(11) NOT NULL,
+  `IdUsuarioPremium` int(11) NOT NULL,
+  PRIMARY KEY (`IdPlaylist`),
+  KEY `IdCanciones` (`IdCanciones`),
+  KEY `IdUsuarioPremium` (`IdUsuarioPremium`),
+  CONSTRAINT `Playlist_ibfk_1` FOREIGN KEY (`IdCanciones`) REFERENCES `Canciones` (`IdCanciones`),
+  CONSTRAINT `Playlist_ibfk_2` FOREIGN KEY (`IdUsuarioPremium`) REFERENCES `Usuario` (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Playlist`
+--
+
+LOCK TABLES `Playlist` WRITE;
+/*!40000 ALTER TABLE `Playlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Playlist` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Registro`
+--
+
+DROP TABLE IF EXISTS `Registro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Registro` (
+  `IdRegistro` int(11) NOT NULL,
+  `TiempoReproduccion` time NOT NULL,
+  `IdCanciones` int(11) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`IdRegistro`),
+  KEY `IdCanciones` (`IdCanciones`),
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `Registro_ibfk_1` FOREIGN KEY (`IdCanciones`) REFERENCES `Canciones` (`IdCanciones`),
+  CONSTRAINT `Registro_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `Usuario` (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Registro`
+--
+
+LOCK TABLES `Registro` WRITE;
+/*!40000 ALTER TABLE `Registro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Registro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Roles`
+--
+
+DROP TABLE IF EXISTS `Roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Roles` (
+  `IdRoles` int(11) NOT NULL,
+  `Tipo` varchar(50) NOT NULL,
+  PRIMARY KEY (`IdRoles`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Roles`
+--
+
+LOCK TABLES `Roles` WRITE;
+/*!40000 ALTER TABLE `Roles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Tarjeta`
+--
+
+DROP TABLE IF EXISTS `Tarjeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tarjeta` (
+  `IdTarjeta` int(11) NOT NULL,
+  `Numero` tinyint(4) NOT NULL,
+  `FechaDeExpiracion` date NOT NULL,
+  `Cvc` tinyint(4) NOT NULL,
+  `IdUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`IdTarjeta`),
+  KEY `IdUsuario` (`IdUsuario`),
+  CONSTRAINT `Tarjeta_ibfk_1` FOREIGN KEY (`IdUsuario`) REFERENCES `Usuario` (`IdUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Tarjeta`
+--
+
+LOCK TABLES `Tarjeta` WRITE;
+/*!40000 ALTER TABLE `Tarjeta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Tarjeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Usuario`
+--
+
+DROP TABLE IF EXISTS `Usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Usuario` (
+  `IdUsuario` int(11) NOT NULL,
+  `Nombre` varchar(50) NOT NULL,
+  `CorreoElectronico` varchar(50) NOT NULL,
+  `FechaInicio` date NOT NULL,
+  `IdRoles` int(11) NOT NULL,
+  PRIMARY KEY (`IdUsuario`),
+  KEY `IdRoles` (`IdRoles`),
+  CONSTRAINT `Usuario_ibfk_1` FOREIGN KEY (`IdRoles`) REFERENCES `Roles` (`IdRoles`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Usuario`
+--
+
+LOCK TABLES `Usuario` WRITE;
+/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-05-29  0:33:28
