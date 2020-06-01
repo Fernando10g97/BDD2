@@ -121,6 +121,7 @@ CREATE TABLE `CancionesFavoritas` (
 
 LOCK TABLES `CancionesFavoritas` WRITE;
 /*!40000 ALTER TABLE `CancionesFavoritas` DISABLE KEYS */;
+INSERT INTO `CancionesFavoritas` VALUES (1,'Despacito'),(2,'Abrazame'),(3,'Tu y yo'),(4,'Volverte a ver'),(5,'Amanecer'),(6,'El adios'),(7,'Vivir sin ti'),(8,'Sabor a miel'),(9,'Quedate'),(10,'Hasta ayer');
 /*!40000 ALTER TABLE `CancionesFavoritas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,4 +383,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  7:14:56
+-- Dump completed on 2020-06-01  7:21:48
