@@ -303,6 +303,7 @@ CREATE TABLE `Roles` (
 
 LOCK TABLES `Roles` WRITE;
 /*!40000 ALTER TABLE `Roles` DISABLE KEYS */;
+INSERT INTO `Roles` VALUES (1,'Administrador'),(2,'Premium'),(3,'Básico');
 /*!40000 ALTER TABLE `Roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,6 +360,7 @@ CREATE TABLE `Usuario` (
 
 LOCK TABLES `Usuario` WRITE;
 /*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
+INSERT INTO `Usuario` VALUES (1,'Fernando10g','fernando10g@gmail.com','2010-01-17',1),(2,'Luis97m','luis97m@gmail.com','2012-05-18',1),(3,'Camila12d','camila12d@gmail.com','2015-03-19',2),(4,'Maria24t','maria24t@gmail.com','2020-02-17',3),(5,'Carlos30s','carlos30s@gmail.com','2018-11-18',2),(6,'Juan4w','juan4w@gmail.com','2005-10-17',2),(7,'Cristina21r','cristina21r@gmail.com','2002-04-20',2),(8,'Dayana10p','dayana10p@gmail.com','2014-08-17',3),(9,'Marcos15v','marcos15v@gmail.com','2019-09-17',3),(10,'Sabrina12k','sabrina12k@gmail.com','2010-12-17',2);
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -371,4 +373,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29  0:33:28
+-- Dump completed on 2020-06-01  3:47:14
