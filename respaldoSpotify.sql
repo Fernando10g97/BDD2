@@ -36,6 +36,7 @@ CREATE TABLE `Albumes` (
 
 LOCK TABLES `Albumes` WRITE;
 /*!40000 ALTER TABLE `Albumes` DISABLE KEYS */;
+INSERT INTO `Albumes` VALUES (1,'Corazon partido','2018-02-16'),(2,'Noches de luna llena','2013-05-15'),(3,'Amanecer bonito','2014-03-08'),(4,'Llegamos a la disco','2022-07-15'),(5,'Canciones del ayer','2017-12-18'),(6,'Caminando entre tus brazos','2003-11-17'),(7,'Volando alto','2001-01-18'),(8,'Nadando entre tus besos','2019-04-15'),(9,'Atrevete a darlo todo','2017-08-17'),(10,'un singlo sin ti','2016-11-16');
 /*!40000 ALTER TABLE `Albumes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,6 +96,7 @@ CREATE TABLE `Canciones` (
 
 LOCK TABLES `Canciones` WRITE;
 /*!40000 ALTER TABLE `Canciones` DISABLE KEYS */;
+INSERT INTO `Canciones` VALUES (1,'Despacito','2017-04-16',1,1,4),(2,'Abrazame','2015-06-15',2,1,2),(3,'Tu y yo','2011-07-17',2,2,5),(4,'Volverte a ver','2025-08-18',2,1,2),(5,'Amanecer','2012-10-16',3,3,3),(6,'El adios','2002-11-15',3,2,1),(7,'Vivir sin ti','2007-12-17',4,3,3),(8,'Sabor a miel','2018-01-18',4,4,1),(9,'Quedate','2019-01-19',1,2,2),(10,'Hasta ayer','2016-12-17',5,3,1);
 /*!40000 ALTER TABLE `Canciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -377,4 +379,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  6:14:09
+-- Dump completed on 2020-06-01  6:44:30
