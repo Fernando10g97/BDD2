@@ -61,6 +61,7 @@ CREATE TABLE `Artista` (
 
 LOCK TABLES `Artista` WRITE;
 /*!40000 ALTER TABLE `Artista` DISABLE KEYS */;
+INSERT INTO `Artista` VALUES (1,'Shakira','shakira24@gmail.com','2012-01-14'),(2,'Reik','reik45@gmail.com','2014-05-15'),(3,'Ozuna','ozuna34@gmail.com','2025-03-12'),(4,'J Balvin','jbalvin95@gmail.com','2005-02-13'),(5,'Rio Roma','rioroma12@gmail.com','2017-11-15'),(6,'Sin Bandera','sinbandera64@gmail.com','2023-10-16'),(7,'Camilo Echeverry','camilo96@gmail.com','2009-04-12'),(8,'Camila Cabello','camila89@gmail.com','2005-08-17'),(9,'Manuel Turizo','manuel65@gmail.com','2028-09-15'),(10,'Evaluna','evaluna45@gmail.com','2013-12-13');
 /*!40000 ALTER TABLE `Artista` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,6 +223,7 @@ CREATE TABLE `Genero` (
 
 LOCK TABLES `Genero` WRITE;
 /*!40000 ALTER TABLE `Genero` DISABLE KEYS */;
+INSERT INTO `Genero` VALUES (1,'Baladas'),(2,'Rock'),(3,'Pop'),(4,'Reggaeton'),(5,'Electronica'),(6,'Boleros'),(7,'Pasillos'),(8,'Instrumental'),(9,'Folklorica'),(10,'Nacional');
 /*!40000 ALTER TABLE `Genero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  5:13:17
+-- Dump completed on 2020-06-01  6:14:09
