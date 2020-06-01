@@ -151,6 +151,7 @@ CREATE TABLE `CancionesSugeridas` (
 
 LOCK TABLES `CancionesSugeridas` WRITE;
 /*!40000 ALTER TABLE `CancionesSugeridas` DISABLE KEYS */;
+INSERT INTO `CancionesSugeridas` VALUES (1,1,3),(2,2,2),(3,3,3),(4,4,2),(5,5,2),(6,6,3),(7,7,2),(8,8,2),(9,9,2),(10,10,3);
 /*!40000 ALTER TABLE `CancionesSugeridas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,4 +384,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  7:21:48
+-- Dump completed on 2020-06-01  7:27:04
