@@ -257,6 +257,7 @@ CREATE TABLE `Playlist` (
 
 LOCK TABLES `Playlist` WRITE;
 /*!40000 ALTER TABLE `Playlist` DISABLE KEYS */;
+INSERT INTO `Playlist` VALUES (1,'Entrenamiento','2010-01-18',1,3),(2,'Estudio','2012-05-19',3,3),(3,'Concentracion','2015-03-18',4,5),(4,'Reflexionar','2020-02-18',3,5),(5,'Motivacion','2018-11-18',2,6),(6,'Bailar','2005-10-18',2,7),(7,'Fiestas','2002-04-20',5,6),(8,'Amigos','2014-08-19',3,10),(9,'Romanticas','2019-09-20',7,10),(10,'Salidas','2010-12-19',8,3);
 /*!40000 ALTER TABLE `Playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,4 +382,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  7:01:09
+-- Dump completed on 2020-06-01  7:14:56
