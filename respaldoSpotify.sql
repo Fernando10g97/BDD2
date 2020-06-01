@@ -126,6 +126,22 @@ INSERT INTO `CancionesFavoritas` VALUES (1,'Despacito'),(2,'Abrazame'),(3,'Tu y 
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `CancionesMasEscuchadas`
+--
+
+DROP TABLE IF EXISTS `CancionesMasEscuchadas`;
+/*!50001 DROP VIEW IF EXISTS `CancionesMasEscuchadas`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `CancionesMasEscuchadas` (
+  `Cancion` tinyint NOT NULL,
+  `Album` tinyint NOT NULL,
+  `Artista` tinyint NOT NULL,
+  `Cant. veces escuchado` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `CancionesSugeridas`
 --
 
@@ -233,6 +249,22 @@ INSERT INTO `Genero` VALUES (1,'Baladas'),(2,'Rock'),(3,'Pop'),(4,'Reggaeton'),(
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `IngresosUsuarios`
+--
+
+DROP TABLE IF EXISTS `IngresosUsuarios`;
+/*!50001 DROP VIEW IF EXISTS `IngresosUsuarios`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `IngresosUsuarios` (
+  `Usuario` tinyint NOT NULL,
+  `Fecha Ingreso` tinyint NOT NULL,
+  `Nombre` tinyint NOT NULL,
+  `Correo Electronico` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `Playlist`
 --
 
@@ -292,6 +324,23 @@ LOCK TABLES `Registro` WRITE;
 INSERT INTO `Registro` VALUES (1,'00:00:02',1,1),(2,'00:00:03',2,2),(3,'00:00:01',3,3),(4,'00:00:02',1,4),(5,'00:00:03',4,5),(6,'00:00:05',2,1),(7,'00:00:04',2,2),(8,'00:00:03',5,3),(9,'00:00:02',3,4),(10,'00:00:03',1,5);
 /*!40000 ALTER TABLE `Registro` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `ReporteTarjeta`
+--
+
+DROP TABLE IF EXISTS `ReporteTarjeta`;
+/*!50001 DROP VIEW IF EXISTS `ReporteTarjeta`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `ReporteTarjeta` (
+  `Tarjeta` tinyint NOT NULL,
+  `Numero de Tarjeta` tinyint NOT NULL,
+  `Fecha de Expiracion` tinyint NOT NULL,
+  `Codigo CVC` tinyint NOT NULL,
+  `IdUsuario` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `Roles`
@@ -374,6 +423,63 @@ LOCK TABLES `Usuario` WRITE;
 INSERT INTO `Usuario` VALUES (1,'Fernando10g','fernando10g@gmail.com','2010-01-17',1),(2,'Luis97m','luis97m@gmail.com','2012-05-18',1),(3,'Camila12d','camila12d@gmail.com','2015-03-19',2),(4,'Maria24t','maria24t@gmail.com','2020-02-17',3),(5,'Carlos30s','carlos30s@gmail.com','2018-11-18',2),(6,'Juan4w','juan4w@gmail.com','2005-10-17',2),(7,'Cristina21r','cristina21r@gmail.com','2002-04-20',2),(8,'Dayana10p','dayana10p@gmail.com','2014-08-17',3),(9,'Marcos15v','marcos15v@gmail.com','2019-09-17',3),(10,'Sabrina12k','sabrina12k@gmail.com','2010-12-17',2);
 /*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `CancionesMasEscuchadas`
+--
+
+/*!50001 DROP TABLE IF EXISTS `CancionesMasEscuchadas`*/;
+/*!50001 DROP VIEW IF EXISTS `CancionesMasEscuchadas`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `CancionesMasEscuchadas` AS select `Canciones`.`Nombre` AS `Cancion`,`Albumes`.`Nombre` AS `Album`,`Artista`.`Nombre` AS `Artista`,count(`Escuchado`.`IdEscuchado`) AS `Cant. veces escuchado` from (((`Canciones` join `Albumes`) join `Artista`) join `Escuchado`) where `Canciones`.`IdAlbumes` = `Albumes`.`IdAlbumes` and `Canciones`.`IdArtista` = `Artista`.`IdArtista` group by `Canciones`.`Nombre` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `IngresosUsuarios`
+--
+
+/*!50001 DROP TABLE IF EXISTS `IngresosUsuarios`*/;
+/*!50001 DROP VIEW IF EXISTS `IngresosUsuarios`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `IngresosUsuarios` AS select `Usuario`.`IdUsuario` AS `Usuario`,`Usuario`.`FechaInicio` AS `Fecha Ingreso`,`Usuario`.`Nombre` AS `Nombre`,`Usuario`.`CorreoElectronico` AS `Correo Electronico` from `Usuario` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `ReporteTarjeta`
+--
+
+/*!50001 DROP TABLE IF EXISTS `ReporteTarjeta`*/;
+/*!50001 DROP VIEW IF EXISTS `ReporteTarjeta`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `ReporteTarjeta` AS select `Tarjeta`.`IdTarjeta` AS `Tarjeta`,`Tarjeta`.`Numero` AS `Numero de Tarjeta`,`Tarjeta`.`FechaDeExpiracion` AS `Fecha de Expiracion`,`Tarjeta`.`Cvc` AS `Codigo CVC`,`Tarjeta`.`IdUsuario` AS `IdUsuario` from `Tarjeta` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -384,4 +490,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01  7:27:04
+-- Dump completed on 2020-06-01 22:04:50
